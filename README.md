@@ -6,7 +6,7 @@ Based on the paper **“A General Framework for Risk Optimization with Learning 
 
 ## Overview
 
-Standard learning-to-rank (LTR) objectives typically maximize expected ranking utility. When relevance is uncertain, a high average score can hide a substantial probability of poor outcomes—for example, when a ranking serves only one interpretation of an ambiguous query.
+Standard learning-to-rank (LTR) objectives typically maximize expected ranking utility. When relevance is uncertain, a high average score can hide a substantial probability of poor outcomes. For example, when a ranking serves only one interpretation of an ambiguous query.
 
 This work incorporates risk functionals from portfolio theory directly into **exposure-based LTR**. Rather than adding a greedy re-ranking step at inference time, the framework optimizes a stochastic ranking model using samples from a relevance distribution.
 
@@ -44,7 +44,7 @@ $$
 +\lambda\mathcal{R}_{\rho}[U(\pi\mid q,\rho)].
 $$
 
-Here, $$\pi$$ is the stochastic ranking policy, $$\theta_{d\mid\pi,q}$$ is expected document exposure, and $$\rho$$ is sampled relevance. The parameter $$\lambda\in[0,1]$$ controls the trade-off between average utility and the risk-sensitive objective.
+Here, $\pi$ is the stochastic ranking policy, $\theta_{d\mid\pi,q}$ is expected document exposure, and $\rho$ is sampled relevance. The parameter $\lambda\in[0,1]$ controls the trade-off between average utility and the risk-sensitive objective.
 
 **Important:** risk is evaluated over relevance uncertainty after averaging over the policy’s rankings. The objective does not directly control the outcome of each individual sampled ranking.
 
@@ -71,7 +71,7 @@ The relevance model only needs to support sampling; the framework does not requi
 | Average Value at Risk (AVaR / CVaR) | Improve average utility in the worst-performing fraction of outcomes |
 | Entropic Value at Risk (EVaR) | Optimize a conservative lower-tail bound based on exponential moments |
 
-Variance-based penalties enter the maximization objective with a negative sign. VaR, AVaR, and EVaR use a **utility convention**: higher values are better. Their parameter $$\alpha\in(0,1)$$ specifies the lower-tail level, with smaller values targeting more extreme downside outcomes.
+Variance-based penalties enter the maximization objective with a negative sign. VaR, AVaR, and EVaR use a **utility convention**: higher values are better. Their parameter $\alpha\in(0,1)$ specifies the lower-tail level, with smaller values targeting more extreme downside outcomes.
 
 ## Experimental Setup
 
@@ -114,15 +114,6 @@ Models are compared with an expected-utility baseline and an expected-utility-pl
 - **Semi-standard deviation and VaR-based objectives generally provide more favorable trade-offs than raw variance** in the reported experiments.
 - **No single risk functional is universally best**; the appropriate choice depends on the uncertainty structure and desired trade-off.
 
-Selected results from the paper illustrate these trade-offs. Values below are mean scores across ten runs; standard deviations are omitted for brevity.
-
-| Dataset and sampling | Objective | Mean DCG@10 | 10th-percentile DCG@10 |
-| --- | --- | --- | --- |
-| MSLR-Web-10K, per-cluster | Expected utility | 5.63 | 0.68 |
-| MSLR-Web-10K, per-cluster | AVaR, tail level 0.25, risk weight 1 | 4.71 | 1.50 |
-| Istella-S, per-document | Expected utility | 11.27 | 3.39 |
-| Istella-S, per-document | Standard-deviation penalty, risk weight one-third | 11.29 | 3.86 |
-
 ## Scope and Limitations
 
 - Experimental relevance distributions are **simulated**, not directly observed uncertainty annotations.
@@ -130,9 +121,3 @@ Selected results from the paper illustrate these trade-offs. Values below are me
 - The framework optimizes policy-level exposure utility rather than risk for individual rankings.
 - Simple sample-based estimators prioritize practical optimization; their automatically differentiated gradients are not guaranteed to be unbiased or consistent.
 - Strong risk aversion can substantially reduce mean effectiveness.
-
-## Repository
-
-The paper identifies [ORRMCODE/LTRrisk](https://github.com/ORRMCODE/LTRrisk) as its implementation repository.
-
-This README summarizes the supplied manuscript. Installation instructions, dependency versions, training commands, and repository structure are not specified here because they have not been verified against the codebase.
