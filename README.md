@@ -4,6 +4,10 @@ A portfolio-theoretic framework for training ranking models that balance average
 
 Based on the paper **“A General Framework for Risk Optimization with Learning to Rank through Portfolio Theory.”**
 
+## Disclaimer
+
+This repository implements robust versions of the estimators presented in the paper, incorporating the modifications needed for the **Rockafellar–Uryasev variational formulation of AVaR** and the **entropic variational formulation of EVaR**. Empirical comparisons show no material differences in results, while the modified estimators improve computational performance and training efficiency. These improvements require changes to the training logic relative to the simplified approach described in the paper.
+
 ## Overview
 
 Standard learning-to-rank (LTR) objectives typically maximize expected ranking utility. When relevance is uncertain, a high average score can hide a substantial probability of poor outcomes. For example, when a ranking serves only one interpretation of an ambiguous query.
@@ -121,3 +125,4 @@ Models are compared with an expected-utility baseline and an expected-utility-pl
 - The framework optimizes policy-level exposure utility rather than risk for individual rankings.
 - Simple sample-based estimators prioritize practical optimization; their automatically differentiated gradients are not guaranteed to be unbiased or consistent.
 - Strong risk aversion can substantially reduce mean effectiveness.
+
