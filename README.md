@@ -8,6 +8,8 @@ Based on the paper **“A General Framework for Risk Optimization with Learning 
 
 This repository implements robust versions of the estimators presented in the paper, incorporating the modifications needed for the **Rockafellar–Uryasev variational formulation of AVaR** and the **entropic variational formulation of EVaR**. Empirical comparisons show no material differences in results, while the modified estimators improve computational performance and training efficiency. These improvements require changes to the training logic relative to the simplified approach described in the paper.
 
+The implementation uses minimization rather than the paper’s utility-maximization convention. Utilities and risk functionals are therefore adapted to the corresponding loss-minimization formulation, with appropriate sign conventions to preserve the intended optimization objective.
+
 ## Overview
 
 Standard learning-to-rank (LTR) objectives typically maximize expected ranking utility. When relevance is uncertain, a high average score can hide a substantial probability of poor outcomes. For example, when a ranking serves only one interpretation of an ambiguous query.
