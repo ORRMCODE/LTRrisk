@@ -90,17 +90,10 @@ def main():
     # -----------------------------------------------------------------
     # Precompute quantile weights (uses RELSAMPLES)
     # -----------------------------------------------------------------
-    Q_Wi_mat90_HD = portfolio.W_quantile_HD(N_samples=RELSAMPLES, q=0.90)
-    Q_Wi_mat75_HD = portfolio.W_quantile_HD(N_samples=RELSAMPLES, q=0.75)
-    Q_Wi_mat50_HD = portfolio.W_quantile_HD(N_samples=RELSAMPLES, q=0.50)
-    Q_Wi_mat25_HD = portfolio.W_quantile_HD(N_samples=RELSAMPLES, q=0.25)
-    Q_Wi_mat10_HD = portfolio.W_quantile_HD(N_samples=RELSAMPLES, q=0.10)
-
-    Q_Wi_mat90 = portfolio.W_quantile_pop(N_samples=RELSAMPLES, q=0.90)
-    Q_Wi_mat75 = portfolio.W_quantile_pop(N_samples=RELSAMPLES, q=0.75)
-    Q_Wi_mat50 = portfolio.W_quantile_pop(N_samples=RELSAMPLES, q=0.50)
-    Q_Wi_mat25 = portfolio.W_quantile_pop(N_samples=RELSAMPLES, q=0.25)
-    Q_Wi_mat10 = portfolio.W_quantile_pop(N_samples=RELSAMPLES, q=0.10)
+    
+    Q_Wi_mat50_HD = portfolio.W_quantile_pop(N_samples=RELSAMPLES, q=0.50)
+    Q_Wi_mat25_HD = portfolio.W_quantile_pop(N_samples=RELSAMPLES, q=0.25)
+    Q_Wi_mat10_HD = portfolio.W_quantile_pop(N_samples=RELSAMPLES, q=0.10)
 
     # -----------------------------------------------------------------
     # Training risk functional configuration (uses LOSS_Q, TRADEOFF)
